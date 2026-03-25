@@ -1,0 +1,49 @@
+<div class="main-container" [class.show-letter]="showLetter">
+
+  <!-- Main View -->
+  <div class="view-main" [class.hidden]="showLetter">
+    <div class="letter-content main-letter">
+      <section class="hero">
+        <h1 class="nombres">Felipe & Jesús</h1>
+        <p class="subtitulo">¡Nos casamos!</p>
+      </section>
+
+      <div class="photos-container">
+        <div class="marco-foto img-1"></div>
+        <div class="marco-foto img-2"></div>
+      </div>
+
+      <button class="arrow-btn" (click)="toggleView()">
+        <img src="assets/right_arrow.svg" alt="Ver carta" class="btn-icon">
+      </button>
+    </div>
+  </div>
+
+  <!-- Letter View -->
+  <div class="view-letter" [class.hidden]="!showLetter">
+    <div class="letter-content">
+      <h2>Estás Formalmente Invitado</h2>
+      <p class="letter-text">
+        El amor se compone de una sola alma que habita en dos cuerpos.<br><br>
+        Nos encantaría compartir con ustedes este día tan especial en nuestras vidas. Acompáñennos a celebrar nuestra
+        boda.
+      </p>
+      <button class="back-btn" (click)="toggleView()">
+        <img src="assets/left_arrow.svg" alt="Volver" class="btn-icon">
+      </button>
+    </div>
+  </div>
+
+  <!-- Music Player Outside -->
+  <div class="music-player">
+    <button class="music-btn" (click)="toggleMusic()">
+      <img *ngIf="isPlaying" src="assets/pause.svg" alt="Pausar" class="btn-icon">
+      <img *ngIf="!isPlaying" src="assets/play.svg" alt="Reproducir" class="btn-icon">
+    </button>
+    <audio #audioPlayer loop autoplay src="assets/music.mp3"></audio>
+  </div>
+
+  <div class="lottie-background">
+    <ng-lottie [options]="options"></ng-lottie>
+  </div>
+</div>
