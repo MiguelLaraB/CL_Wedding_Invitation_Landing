@@ -13,6 +13,8 @@
    MAIN CONTAINER
    ============================================================ */
 .main-container {
+  opacity: 0;
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,13 +28,19 @@
   background: url('../../assets/background.jpg') no-repeat center center / cover fixed;
 }
 
+.main-container.ready {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease;
+}
+
 /* Overlay tenue sobre el fondo */
 .main-container::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(1px);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: none;
   z-index: 0;
 }
 
@@ -138,13 +146,17 @@
   background-position: center;
   border: 2px solid #e5dbca;
   border-radius: 6px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   padding: clamp(24px, 5vw, 48px);
   transform-origin: center;
+  will-change: transform, opacity;
 
   /* Mobile: casi toda la pantalla */
-  width: clamp(280px, 88vw, 500px);
-  min-height: 60dvh;
+  width: clamp(336px, 90vw, 600px);
+  min-height: 90ssdvh;
+
+  /* Mover a la derecha un 30% */
+  left: 17%;
 
   display: flex;
   flex-direction: column;
@@ -156,9 +168,9 @@
 
 @media (min-width: 768px) {
   .letter-content {
-    width: clamp(400px, 55vw, 700px);
-    min-height: 55dvh;
-    max-height: 85dvh;
+    width: clamp(480px, 70vw, 900px);
+    min-height: 66dvh;
+    max-height: 95dvh;
   }
 }
 
@@ -315,6 +327,7 @@
     box-shadow 0.3s ease,
     background 0.25s ease;
   position: absolute;
+  will-change: transform, opacity;
 }
 
 .arrow-btn {
@@ -362,6 +375,37 @@
 }
 
 /* ============================================================
+   PLAY/PAUSE BUTTON
+   ============================================================ */
+.play-btn {
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid #d4d4bc;
+  width: clamp(50px, 9vw, 68px);
+  height: clamp(50px, 9vw, 68px);
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease, background 0.25s ease;
+  z-index: 50;
+}
+
+.play-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* ============================================================
    LOTTIE BACKGROUND
    ============================================================ */
 .lottie-background {
@@ -397,8 +441,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 248, 240, 0.32);
-  backdrop-filter: blur(2px);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: none;
 }
 
 /* ---- Hint text ---- */
@@ -409,7 +453,7 @@
   font-size: clamp(1rem, 3vw, 1.4rem);
   color: #7a6a55;
   letter-spacing: 3px;
-  animation: hintFloat 2.2s ease-in-out infinite;
+  animation: hintFloat 2.2s ease-in-out 3;
   transition: opacity 0.4s ease;
   text-shadow: 0 1px 4px rgba(255, 255, 255, 0.6);
   margin-left: 660px;
@@ -442,7 +486,7 @@
   perspective: 900px;
   /* habilita el flip 3D de la solapa */
   filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.22));
-  animation: envFloat 3s ease-in-out infinite;
+  animation: envFloat 3s ease-in-out 3;
   margin-left: 660px;
 }
 
