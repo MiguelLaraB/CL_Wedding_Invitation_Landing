@@ -1,10 +1,37 @@
-<div class="main-container" [class.show-letter]="showLetter">
+<div class="main-container" [class.ready]="isReady" [class.show-letter]="showLetter"
+  [class.low-performance]="isLowPerformance">
 
-  <!-- Main View -->
+  <!-- ===== PANTALLA DE SOBRE ===== -->
+  <div class="envelope-screen" *ngIf="showEnvelope" [class.opening]="envelopeOpening" (click)="openEnvelope()">
+
+    <p class="envelope-hint" [class.fade-out]="envelopeOpening">Haz clic para abrir</p>
+
+    <div class="envelope-wrap">
+      <!-- Base sólida del sobre (fondo interior) -->
+      <div class="env-base"></div>
+
+      <!-- Mini carta que sube al abrirse -->
+      <div class="env-letter">
+        <span>Verónica &amp; Alberto</span>
+      </div>
+
+      <!-- Solapa superior (la que se abre y rota 3D) -->
+      <div class="env-flap top-flap"></div>
+
+      <!-- Solapas laterales y frontal (siempre arriba de la carta) -->
+      <div class="env-flap left-flap"></div>
+      <div class="env-flap right-flap"></div>
+      <div class="env-flap bottom-flap"></div>
+    </div>
+
+  </div>
+
+  <!-- ===== VISTA PRINCIPAL ===== -->
   <div class="view-main" [class.hidden]="showLetter">
     <div class="letter-content main-letter">
+
       <section class="hero">
-        <h1 class="nombres">Felipe & Jesús</h1>
+        <h1 class="nombres">Verónica &amp; Alberto</h1>
         <p class="subtitulo">¡Nos casamos!</p>
       </section>
 
@@ -13,37 +40,42 @@
         <div class="marco-foto img-2"></div>
       </div>
 
-      <button class="arrow-btn" (click)="toggleView()">
+      <button class="arrow-btn" (click)="toggleView()" aria-label="Ver carta">
         <img src="assets/right_arrow.svg" alt="Ver carta" class="btn-icon">
       </button>
+
     </div>
   </div>
 
-  <!-- Letter View -->
+  <!-- ===== VISTA CARTA ===== -->
   <div class="view-letter" [class.hidden]="!showLetter">
     <div class="letter-content">
+
       <h2>Estás Formalmente Invitado</h2>
       <p class="letter-text">
         El amor se compone de una sola alma que habita en dos cuerpos.<br><br>
-        Nos encantaría compartir con ustedes este día tan especial en nuestras vidas. Acompáñennos a celebrar nuestra
-        boda.
+        Nos encantaría compartir con ustedes este día tan especial en nuestras vidas.
+        Acompáñennos a celebrar nuestra boda.
       </p>
-      <button class="back-btn" (click)="toggleView()">
+
+      <button class="back-btn" (click)="toggleView()" aria-label="Volver">
         <img src="assets/left_arrow.svg" alt="Volver" class="btn-icon">
       </button>
+
     </div>
   </div>
 
-  <!-- Music Player Outside -->
-  <div class="music-player">
-    <button class="music-btn" (click)="toggleMusic()">
-      <img *ngIf="isPlaying" src="assets/pause.svg" alt="Pausar" class="btn-icon">
-      <img *ngIf="!isPlaying" src="assets/play.svg" alt="Reproducir" class="btn-icon">
-    </button>
-    <audio #audioPlayer loop autoplay src="assets/music.mp3"></audio>
+  <!-- Audio (invisible) -->
+  <audio #audioPlayer loop src="assets/music.mp3"></audio>
+
+  <!-- ====== BOTÓN DE PLAY/PAUSA ====== -->
+  <button class="play-btn" (click)="toggleMusic()" aria-label="Reproducir/Pausar Música">
+    <img [src]="isPlaying ? 'assets/pause.svg' : 'assets/play.svg'" alt="Play/Pause" class="btn-icon">
+  </button>
+
+  <!-- Lottie de fondo -->
+  <div class="lottie-background">
+    <ng-lottie #lottieRef [options]="options"></ng-lottie>
   </div>
 
-  <div class="lottie-background">
-    <ng-lottie [options]="options"></ng-lottie>
-  </div>
 </div>
