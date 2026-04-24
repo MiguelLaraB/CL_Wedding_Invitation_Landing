@@ -653,3 +653,74 @@
     transform: scale(1.05);
   }
 }
+
+/* ============================================================
+   MOBILE LANDSCAPE OPTIMIZATIONS
+   ============================================================ */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .letter-content {
+    width: 90vw;
+    min-height: 85vh;
+    padding: 15px 30px;
+    left: 0 !important; /* Center on mobile landscape */
+    margin: 0 auto;
+  }
+
+  .hero {
+    margin-bottom: 8px;
+  }
+
+  .nombres {
+    font-size: 2rem;
+  }
+
+  .subtitulo {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+
+  .photos-container {
+    gap: 15px;
+    margin: 8px auto;
+  }
+
+  .marco-foto {
+    width: 100px;
+    height: 140px;
+    border-radius: 50px;
+  }
+
+  .letter-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .letter-text {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+
+  .arrow-btn, .back-btn {
+    right: 10px !important;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Envelope view optimizations */
+  .envelope-hint {
+    margin-left: 35% !important;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .envelope-wrap {
+    margin-left: 35% !important;
+    width: 280px;
+    height: 180px;
+  }
+
+  .env-letter {
+    font-size: 0.85rem;
+  }
+}
